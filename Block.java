@@ -1,11 +1,17 @@
-public class Block {
-    int start;
-    int end;
-    String identifier;
+public class Block extends Range {
+    private String identifier;
 
     public Block(int start, int end, String identifier) {
-        this.start = start;
-        this.end = end;
+        super(start, end);
         this.identifier = identifier;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    @Override
+    public String toString() {
+        return "" + start + " " + end + " " + identifier;
     }
 }
