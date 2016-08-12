@@ -31,8 +31,15 @@ public class Table {
     /*
     For all blocks in list, impose the newest block on them.
      */
-    private void resolveConflictsAndAdd(Block block) {
-        blocks.add(block);
+    private void resolveConflictsAndAdd(Block newBlock) {
+        if (blocks.size() == 0) {
+            blocks.add(newBlock);
+        }
+        List<Block> newList = new ArrayList<>();
+        for (Block existingBlock : blocks) {
+            newList.addAll(existingBlock.impose(newBlock));
+        }
+        blocks = newList;
     }
     /*
     Reduce the given list of blocks to the simplest list.

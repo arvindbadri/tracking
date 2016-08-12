@@ -1,7 +1,7 @@
 
 public class Range {
-    int start;
-    int end;
+    protected int start;
+    protected int end;
     public Range(int start, int end) {
         this.start = start;
         this.end = end;
@@ -15,18 +15,18 @@ public class Range {
     }
 
     public Boolean isSame(Range other) {
-        return false;
+        return this.start == other.start && this.end == other.end;
     }
     public Boolean isSubsetOf(Range other) {
-        return false;
+        return this.start >= other.start && this.end  <= other.end;
     }
     public Boolean isSupersetOf(Range other) {
         return other.isSubsetOf(this);
     }
     public Boolean startsBefore(Range other) {
-        return false;
+        return this.start < other.start;
     }
     public Boolean overlapsWith(Range other) {
-        return false;
+        return Math.max(this.start, other.start) <= Math.min(this.end, other.end);
     }
 }
