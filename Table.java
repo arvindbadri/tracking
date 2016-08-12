@@ -46,21 +46,33 @@ public class Table {
      */
     private void reduce() {
         removeDuplicates();
+        removeInvalids();
         sort();
-        List<Block> newList = new ArrayList<>();
+        coalesce();
+        removeDuplicates();
+        sort();
+    }
+
+    private void coalesce() {
         for (int i = 0 ; i < blocks.size() - 1 ; i++) {
             if (blocks.get(i).getIdentifier().equals(blocks.get(i + 1).getIdentifier())) {
-                System.out.println("entered 1");
                 if (blocks.get(i+1).getStart() == blocks.get(i).getEnd() + 1) {
-                    System.out.println("entered 2");
                     blocks.add(new Block(blocks.get(i).getStart(), blocks.get(i+1).getEnd(), blocks.get(i).getIdentifier()));
                     blocks.remove(i + 1);
                     blocks.remove(i);
                 }
             }
         }
-        removeDuplicates();
-        sort();
+    }
+
+    private void removeInvalids() {
+        List<Block> newList = new ArrayList<>();
+        for (Block existingBlock : blocks) {
+            if (existingBlock.getStart() <= existingBlock.getEnd()) {
+                newList.add(existingBlock);
+            }
+        }
+        blocks = newList;
     }
 
     private void removeDuplicates() {
