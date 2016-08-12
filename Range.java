@@ -13,4 +13,20 @@ public class Range {
     public int getEnd() {
         return end;
     }
+
+    public Boolean isSame(Range other) {
+        return false;
+    }
+    public Boolean isSubsetOf(Range other) {
+        return false;
+    }
+    public Boolean isSupersetOf(Range other) {
+        return other.isSubsetOf(this);
+    }
+    public Boolean startsBefore(Range other) {
+        return false;
+    }
+    public Boolean overlapsWith(Range other) {
+        return false;
+    }
 }

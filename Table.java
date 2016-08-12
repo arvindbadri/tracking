@@ -28,9 +28,15 @@ public class Table {
             }
         });
     }
+    /*
+    For all blocks in list, impose the newest block on them.
+     */
     private void resolveConflictsAndAdd(Block block) {
         blocks.add(block);
     }
+    /*
+    Reduce the given list of blocks to the simplest list.
+     */
     private void reduce() {
 
     }
