@@ -45,6 +45,26 @@ public class Table {
     Reduce the given list of blocks to the simplest list.
      */
     private void reduce() {
+        removeDuplicates();
+        sort();
+        List<Block> newList = new ArrayList<>();
+        for (int i = 0 ; i < blocks.size() - 1 ; i++) {
+            if (blocks.get(i).getIdentifier().equals(blocks.get(i + 1).getIdentifier())) {
+                System.out.println("entered 1");
+                if (blocks.get(i+1).getStart() == blocks.get(i).getEnd() + 1) {
+                    System.out.println("entered 2");
+                    blocks.add(new Block(blocks.get(i).getStart(), blocks.get(i+1).getEnd(), blocks.get(i).getIdentifier()));
+                    blocks.remove(i + 1);
+                    blocks.remove(i);
+                }
+            }
+        }
+        removeDuplicates();
+        sort();
+    }
 
+    private void removeDuplicates() {
+        Set<Block> blockSet = new HashSet<>(blocks);
+        blocks = new ArrayList<>(blockSet);
     }
 }
